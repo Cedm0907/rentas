@@ -37,3 +37,12 @@ class Estacionamiento(models.Model):
 
     def __str__(self):
         return (self.UsoCajon)
+
+class Contrato(models.Model):
+    Folio = models.CharField('Número de contrato', default = None, max_length = 80)
+    Metros_contratados = models.IntegerField('Metros arrendados', blank = True)
+    Precio_metro = models.DecimalField('Precio por metro cuadrado', max_length = 80, blank = True, max_digits = 6, decimal_places = 2)
+    
+    def __get_importe__(self):
+        return self.Metros_contratados*self.Precio_metro
+    importe = property (__get_importe__)
