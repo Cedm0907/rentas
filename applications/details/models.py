@@ -43,6 +43,15 @@ class Contrato(models.Model):
     Metros_contratados = models.IntegerField('Metros arrendados', blank = True)
     Precio_metro = models.DecimalField('Precio por metro cuadrado', max_length = 80, blank = True, max_digits = 6, decimal_places = 2)
     
-    def __get_importe__(self):
+    def __str__(self):
         return self.Metros_contratados*self.Precio_metro
-    importe = property (__get_importe__)
+    importe = property (__str__)
+       #return (self.Folio)
+
+class Cliente(models.Model):
+    Nombre = models.CharField('Razón Social | Nombre', default = None, max_length = 80)
+    email = models.EmailField('Correo electrónico', max_length = 100)
+    direccion = models.CharField('Domicilio', default = None, max_length = 300)
+
+    def __str__(self):
+        return (self.Nombre)

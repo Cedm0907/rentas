@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Edificio, Nivel, Impuestos, Estacionamiento, Contrato
+from .models import Edificio, Nivel, Impuestos, Estacionamiento, Contrato, Cliente
 
 class AdminEdificios(admin.ModelAdmin):
   list_display = (
@@ -39,7 +39,14 @@ class AdminContrato(admin.ModelAdmin):
     'Metros_contratados',
     'Precio_metro',
     'importe'
+  )
 
+class AdminClientes(admin.ModelAdmin):
+  list_display = (
+    'id',
+    'Nombre',
+    'email',
+    'direccion'
   )
 
 
@@ -48,3 +55,4 @@ admin.site.register(Nivel, AdminNiveles)
 admin.site.register(Impuestos, AdminImpuestos)
 admin.site.register(Estacionamiento, AdminEstacionamiento)
 admin.site.register(Contrato, AdminContrato)
+admin.site.register(Cliente, AdminClientes)
