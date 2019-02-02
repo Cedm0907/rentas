@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Edificio
+from . models import Edificio, Cliente
 
 # Create your views here.
 from django.views.generic import (
@@ -8,3 +8,5 @@ from django.views.generic import (
     CreateView,
 )
 
+class IndexView(TemplateView):
+    template_name = "../templates/index.html"
