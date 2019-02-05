@@ -10,6 +10,10 @@ class AdminEdificios(admin.ModelAdmin):
     'Nivel',
     'Metros'
     )
+  list_filter = (
+    'id',
+    'Nivel'
+  )
 
 class AdminNiveles(admin.ModelAdmin):
   list_display = (
