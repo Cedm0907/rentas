@@ -5,20 +5,27 @@
     <meta http-eqsection="X-UA-Compatible" content="IE=edge">
     <title>Rentas Ideas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src="main.js"></script> -->
 </head>
 <body>
-    <section>
-        <select name="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="fiat">Fiat</option>
-            <option value="audi">Audi</option>
-        </select>
-    </section>
-    <section>
-        <h1>some text</h1>
-    </section>
+    <h1>Seleccione un cliente</h1>
+
+    <table border = "1">
+      <thead>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Email</th>
+      </thead>
+      <tbody>
+        {% for l in clientes %}
+          <tr>
+            <td>{{l.id}}</td>
+            <td>{{l.Nombre}}</td>
+            <td>{{l.email}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 </body>
 </html>
