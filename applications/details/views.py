@@ -8,7 +8,9 @@ from django.views.generic import (
     CreateView,
 )
 
-class Clientsview(TemplateView):
+class ClientsView(ListView):
     template_name = "../templates/sketch.html"
     model = Cliente
     context_object_name = 'clientes'
+
+    print(context_object_name)

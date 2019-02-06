@@ -8,14 +8,16 @@
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
     <!-- <script src="main.js"></script> -->
 </head>
-<body>
-    <h1>Seleccione un cliente!!</h1>
-  <div style="background:purple">
-  <!-- Aquí incia el for -->
-    {% for row in clientes %}
-      <p style="background:green">{{ row }}</p>
-    {% endfor %}
-  <!-- Aquí finaliza el for -->
-  </div>
-</body>
+  <body>
+    <h1>Seleccione un cliente</h1>
+      <div id='get-client.id' style="background:papayawhip">
+        <!-- Incio del for para recorrer la tabla de clientes -->
+          <select>
+            {% for row in clientes %}
+            <option value="{{ row.id }}">{{ row.Nombre }}</option>
+            {% endfor %}
+          </select>
+          <!-- Fin del for para recorrer la tabla de clientes -->
+      </div>
+  </body>
 </html>
