@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Edificio, Nivel, Impuestos, Estacionamiento, Contrato, Cliente
+from . models import Edificio, Nivel, Impuestos, Estacionamiento, Contrato, Cliente
 
 class AdminEdificios(admin.ModelAdmin):
   list_display = (

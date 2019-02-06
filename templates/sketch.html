@@ -9,23 +9,13 @@
     <!-- <script src="main.js"></script> -->
 </head>
 <body>
-    <h1>Seleccione un cliente</h1>
-
-    <table border = "1">
-      <thead>
-        <th>ID</th>
-        <th>Cliente</th>
-        <th>Email</th>
-      </thead>
-      <tbody>
-        {% for l in clientes %}
-          <tr>
-            <td>{{l.id}}</td>
-            <td>{{l.Nivel}}</td>
-            <td>{{l.metros}}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <h1>Seleccione un cliente!!</h1>
+  <div style="background:purple">
+  <!-- Aquí incia el for -->
+    {% for row in clientes %}
+      <p style="background:green">{{ row }}</p>
+    {% endfor %}
+  <!-- Aquí finaliza el for -->
+  </div>
 </body>
 </html>

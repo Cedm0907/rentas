@@ -9,7 +9,6 @@ from django.views.generic import (
 )
 
 class Clientsview(TemplateView):
-    #print('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Prueba')
     template_name = "../templates/sketch.html"
-    model = Edificio
+    model = Cliente
     context_object_name = 'clientes'
