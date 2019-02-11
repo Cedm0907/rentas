@@ -9,9 +9,15 @@
     <!-- <script src="main.js"></script> -->
 </head>
   <body>
+      <div class="topnav">
+          <a class="active" href="#home">Home</a>
+          <a href="#news">News</a>
+          <a href="#contact">Contact</a>
+          <a href="#about">About</a>
+      </div> 
     <p style="color:red;">Hora {% now "jS F Y H:i" %}</p>
     <h1>Seleccione un cliente</h1>
-      <div id='get-client.id'>
+      <div class='get-client.id'>
         <!-- Incio del for para recorrer la tabla de clientes -->
           <select>
             {% for row in clientes %}
@@ -20,7 +26,7 @@
           </select>
           <!-- Fin del for para recorrer la tabla de clientes -->
       </div>
-      <div id='contract-details'>
+      <div class='contract-details'>
         <h1 style="text-align: center">Detalles del contrato</h1>
         <h2>Número de contrato</h2>
         <h2>Inicio de contrato</h2>
@@ -32,7 +38,9 @@
         <h2>Costo por m<sup>2</sup></h2>
         <h2>Total</h2>
         <h2>Impuestos que aplican en el contrato</h2>
-        <h3 style="text-align: center">Historial del cliente</h3>
+      </div>
+      <div class='client-history'>
+          <h3 style="text-align: center">Historial del cliente</h3>
       </div>
   </body>
 </html>
