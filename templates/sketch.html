@@ -17,16 +17,23 @@
       </div> 
     <p style="color:red;">Hora {% now "jS F Y H:i" %}</p>
     <h1>Seleccione un cliente</h1>
-      <div class='get-client.id'>
+      <div class='client-id'>
         <!-- Incio del for para recorrer la tabla de clientes -->
           <select>
             {% for row in clientes %}
-            <option id='empresa' value="{{ row.id }}">{{ row.Nombre }}</option>
+            <option class='empresa' id="{{ row.id }}">
+              {{ row.Nombre }}
+            </option>
             {% endfor %}
           </select>
           <!-- Fin del for para recorrer la tabla de clientes -->
       </div>
-      <div class='contract-details'>
+      <div class='contract-details' style="background:blue">
+        <p class="print-id">
+          {{ row.id }}
+        </p>
+      </div>
+      <div>
         <h1 style="text-align: center">Detalles del contrato</h1>
         <h2>Número de contrato</h2>
         <h2>Inicio de contrato</h2>
