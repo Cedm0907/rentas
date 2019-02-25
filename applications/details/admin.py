@@ -7,6 +7,7 @@ from . models import Edificio, Nivel, Impuestos, Estacionamiento, Contrato, Clie
 class AdminEdificios(admin.ModelAdmin):
   list_display = (
     'id',
+    'Nombre',
     'Nivel',
     'Metros'
     )
@@ -36,15 +37,6 @@ class AdminEstacionamiento(admin.ModelAdmin):
     'UsoCajon'
   )
 
-class AdminContrato(admin.ModelAdmin):
-  list_display = (
-    'id',
-    'Folio',
-    'Metros_contratados',
-    'Precio_metro',
-    'importe'
-  )
-
 class AdminClientes(admin.ModelAdmin):
   list_display = (
     'id',
@@ -53,6 +45,18 @@ class AdminClientes(admin.ModelAdmin):
     'direccion'
   )
 
+class AdminContrato(admin.ModelAdmin):
+  list_display = (
+    'id',
+    'Folio',
+    'Metros_contratados',
+    'Precio_Metro',
+    'Cliente',
+    'Cajones',
+    'Impuesto',
+    'Nivel'
+
+  )
 
 admin.site.register(Edificio, AdminEdificios)
 admin.site.register(Nivel, AdminNiveles)

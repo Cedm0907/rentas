@@ -1,9 +1,10 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 
 class Edificio(models.Model):
     Nombre = models.CharField('Nombre', max_length = 80, blank = True) 
-    Nivel = models.CharField('Nivel', max_length = 80, blank = True)
-    Metros = models.FloatField('Metros', max_length = 80, blank = True)
+    Nivel = models.PositiveIntegerField('Nivel', blank = True)
+    Metros = models.DecimalField(verbose_name=u'Metros', max_digits = 5, decimal_places = 2, validators = [MinValueValidator(0.0)])
 
     def __str__(self):  
        return str(self.Nivel)
@@ -11,13 +12,13 @@ class Edificio(models.Model):
 class Nivel(models.Model):
     Nivel = models.ForeignKey(Edificio, on_delete = models.CASCADE, default = None)
     #Metros = models.ForeignKey(Metros, on_delete = models.CASCADE, default = None)
-    Metros = models.DecimalField('Metros', max_length = 80, blank = True, max_digits = 6, decimal_places = 2)
-    Sanitarios = models.IntegerField('Número de Baños', blank = True)
+    Metros = models.DecimalField( verbose_name=u'Metros', max_digits = 5, decimal_places = 2, validators = [MinValueValidator(0.0)])
+    Sanitarios = models.PositiveIntegerField('Número de Baños', blank = True)
     #Plano = models.FileField(upload_to = None)
 
 class Impuestos(models.Model):
     Nombre = models.CharField('Nombre del impuesto', max_length = 80, default = None)
-    Porcentaje = models.IntegerField('Cuota (%)', blank = True)
+    Porcentaje = models.PositiveIntegerField('Cuota (%)', blank = True)
         
     def __str__(self):  
        return str(self.Nombre)
@@ -32,24 +33,10 @@ class Estacionamiento(models.Model):
         (Hora, 'Renta por Hora'),
     )
     UsoCajon = models.CharField('Uso de cajón', choices = Uso_Cajon_Choices, default = Contrato, max_length = 80)
+    Cajon = models.PositiveIntegerField('Cajón Número', blank = True, default=None)
 
     def __str__(self):
-        return (self.UsoCajon)
-
-class Contrato(models.Model):
-    Folio = models.CharField('Número de contrato', default = None, max_length = 80)
-    Metros_contratados = models.IntegerField('Metros arrendados', blank = True)
-    Precio_metro = models.DecimalField('Precio por metro cuadrado', max_length = 80, blank = True, max_digits = 6, decimal_places = 2)
-    #cliente
-    #IdCliente = models.ForeignKey(Cliente, on_delete = models.CASCADE, default = None)
-    #cajones
-    #impuestos
-    #nivel
-
-    def __str__(self):
-        return self.Metros_contratados*self.Precio_metro
-    importe = property (__str__)
-       #return (self.Folio)
+        return (self.Cajon)
 
 class Cliente(models.Model):
     Nombre = models.CharField('Razón Social | Nombre', default = None, max_length = 80)
@@ -59,3 +46,19 @@ class Cliente(models.Model):
 
     def __str__(self):
         return (self.Nombre)
+
+class Contrato(models.Model):
+    Folio = models.CharField('Folio de contrato', default = None, max_length = 80)
+    Metros_contratados = models.PositiveIntegerField('Metros arrendados', blank = True)
+    Precio_Metro = models.DecimalField(verbose_name=u'Precio por metro cuadrado', max_digits = 5, decimal_places = 2, validators = [MinValueValidator(0.0)])
+    #cliente
+    Cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE, default = None)
+    #cajones
+    Cajones = models.ForeignKey(Estacionamiento, on_delete = models.CASCADE, default = None)
+    #impuestos
+    Impuesto = models.ForeignKey(Impuestos, on_delete = models.CASCADE, default = None)
+    #nivel
+    Nivel = models.ForeignKey(Edificio, on_delete = models.CASCADE, default = None)
+
+    def __str__(self):
+        return (self.Folio)
