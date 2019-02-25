@@ -9,44 +9,65 @@
     <!-- <script src="main.js"></script> -->
 </head>
   <body>
-      <div class="topnav">
+      <div class="topnav" style="text-align: center">
           <a class="active" href="/">Inicio</a>
-          <a href="#news">News</a>
-          <a href="#contact">Contact</a>
           <a href="/admin">Panel</a>
-      </div> 
-    <p style="color:red;">Hora {% now "jS F Y H:i" %}</p>
-    <h1>Seleccione un cliente</h1>
-      <div class='client-id'>
-        <!-- Incio del for para recorrer la tabla de clientes -->
+      </div>
+    <div class='contract-details' style="border-color: blue; border-style:solid; border-width: 3px">
+      <!-- <div class='client-id'>
+         <h1>Seleccione un cliente</h1>
+        Incio del for para recorrer la tabla de clientes
           <select>
             {% for row in clientes %}
             <option class='empresa' id="{{ row.id }}">
               {{ row.Nombre }}
             </option>
-            {% endfor %}
+            {% endfor %} 
           </select>
-          <!-- Fin del for para recorrer la tabla de clientes -->
-      </div>
-      <div class='contract-details' style="background:blue">
-        <p class="print-id">
-          {{ row.id }}
-        </p>
-      </div>
-      <div>
-        <h1 style="text-align: center">Detalles del contrato</h1>
-        <h2>Número de contrato</h2>
-        <h2>Inicio de contrato</h2>
-        <h2>Fin de contrato</h2>
-        <h2>Vigencia</h2>
-        <h2>Metros arrendados</h2>
-        <h2>Edificio arrendado</h2>
-        <h2>Nivel</h2>
-        <h2>Costo por m<sup>2</sup></h2>
-        <h2>Total</h2>
+          <button type="submit">Consultar</button>
+          Fin del for para recorrer la tabla de clientes
+      </div><br>-->
+        <!-- Inicio de construcción de la tabla -->
+        <h1 style="text-align: center">Detalles de clientes</h1>
+        <table border=1>
+          <thead>
+            <tr>
+              <td>Número de contrato</td>
+              <td>Inicio de contrato</td>
+              <td>Fin de contrato</td>
+              <td>Vigencia</td>
+              <td>Metros arrendados</td>
+              <td>Edificio arrendado</td>
+              <td>Nivel</td>
+              <td>Costo por m<sup>2</sup></td>
+              <td>Total</td>
+            </tr>
+          </thead> 
+          <tbody>
+            {% for row in clientes %}
+            <tr>
+              <td>{{row.Nombre}}</td>
+              <td>{{row.direccion}}</td>
+              <td>{{row.id}}</td>
+              <td>{{row.email}}</td>
+              <td></td>
+              <td>data</td>
+              <td>data</td>
+              <td>data</td>
+              <td>data</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
         <h2>Impuestos que aplican en el contrato</h2>
-      </div>
-      <div class='client-history'>
+        <table border=1>
+          <tr>
+            <td>Impuesto 1</td>
+            <td>valorImpuesto</td>
+          </tr>
+        </table>
+      </div><br>  
+      <div class='client-history' style="border-color: seagreen; border-style:solid; border-width: 3px">
           <h3 style="text-align: center">Historial del cliente</h3>
       </div>
   </body>

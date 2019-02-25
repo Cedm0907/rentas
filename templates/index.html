@@ -24,7 +24,7 @@ body.wrap {
     height: 95.5vh;
     background: #2193b0;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to bottom, #55a1b3, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
 
 div.container {
@@ -33,10 +33,28 @@ div.container {
     }
 </style>
 <body class="wrap">
-    <div class="container">
+    <!-- <div class="container">
             <h1 class="tittle">Control de rentas</h1>
             <a class="button" href='/index'>Consultar cliente</a><br>
             <a class='button' href='/admin'>Panel de administración</a>
+    </div>-->
+    <div class="Clientes">
+        <table border="1">
+            <thead>
+             <th>Nombre Cliente</th>
+             <th>ID</th>
+             <th>Detalles</th>
+            </thead>
+            <tbody>
+                {% for a in clientes %}
+                <tr>
+                    <td>{{a.Nombre}}</td>
+                    <td>{{a.id}}</td>
+                    <td><a href="/index/{{a.id}}/">Consulta</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
     <div class="footer">
         <p>Version 1.0</p>
