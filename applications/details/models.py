@@ -18,10 +18,13 @@ class Nivel(models.Model):
 
 class Impuestos(models.Model):
     Nombre = models.CharField('Nombre del impuesto', max_length = 80, default = "%")
-    Porcentaje = models.DecimalField('Valor', max_digits = 5, decimal_places = 2, blank = True)
-        
+    Porcentaje = models.DecimalField('Valor', max_digits = 5, decimal_places = 2, default = 0, null = True, blank=True)
+    
     def __str__(self):  
-       return str(self.Nombre)
+        return str(self.Nombre)
+
+    '''def get_impuestos(self):
+        return "\n".join([i.Impuestos for i in self.Impuestos.all()])'''
 
 class Estacionamiento(models.Model):
     Contrato = 'PC'
@@ -33,7 +36,7 @@ class Estacionamiento(models.Model):
         (Hora, 'Renta por Hora'),
     )
     UsoCajon = models.CharField('Uso de cajón', choices = Uso_Cajon_Choices, default = Contrato, max_length = 80)
-    Cajon = models.PositiveIntegerField('Cajón Número', blank = True, default=None)
+    Cajon = models.CharField('Cajón Número', max_length=1, blank = True, default=None)
 
     def __str__(self):
         return (self.Cajon)
@@ -50,15 +53,20 @@ class Cliente(models.Model):
 class Contrato(models.Model):
     Folio = models.CharField('Folio de contrato', default = None, max_length = 80)
     Metros_contratados = models.PositiveIntegerField('Metros arrendados', blank = True)
-    Precio_Metro = models.DecimalField(verbose_name=u'Precio por metro cuadrado', max_digits = 5, decimal_places = 2, default=None, validators = [MinValueValidator(0.0)])
+    Precio_Metro = models.DecimalField(verbose_name=u'Precio por metro cuadrado', max_digits = 5, decimal_places = 2, default= None, validators = [MinValueValidator(0.0)])
     #cliente
     Cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE, default = None)
     #cajones
-    Cajones = models.ForeignKey(Estacionamiento, on_delete = models.CASCADE, default = None)
+    #Cajones = models.ForeignKey(Estacionamiento, on_delete = models.CASCADE, default = None)
+    Cajon = models.ManyToManyField('Estacionamiento', max_length = 80, blank=True)
     #impuestos
-    Impuesto = models.ForeignKey(Impuestos, on_delete = models.CASCADE, default = None)
+    Nombre = models.ManyToManyField('Impuestos', max_length = 80, blank=True)
     #nivel
     Nivel = models.ForeignKey(Edificio, on_delete = models.CASCADE, default = None)
 
     def __str__(self):
         return (self.Folio)
+
+
+
+#Many to many fields: https://www.revsys.com/tidbits/tips-using-djangos-manytomanyfield/        

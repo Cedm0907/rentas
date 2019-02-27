@@ -27,9 +27,9 @@ class AdminNiveles(admin.ModelAdmin):
 
 class AdminImpuestos(admin.ModelAdmin):
   list_display = (
-    'Nombre',
-    'Porcentaje'
-  )
+    'id',
+    'Nombre'
+    )
 
 class AdminEstacionamiento(admin.ModelAdmin):
   list_display = (
@@ -52,8 +52,8 @@ class AdminContrato(admin.ModelAdmin):
     'Metros_contratados',
     'Precio_Metro',
     'Cliente',
-    'Cajones',
-    'Impuesto',
+    #'Cajones',
+    #'Nombre',
     'Nivel'
 
   )
