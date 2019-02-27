@@ -17,8 +17,8 @@ class Nivel(models.Model):
     #Plano = models.FileField(upload_to = None)
 
 class Impuestos(models.Model):
-    Nombre = models.CharField('Nombre del impuesto', max_length = 80, default = None)
-    Porcentaje = models.PositiveIntegerField('Cuota (%)', blank = True)
+    Nombre = models.CharField('Nombre del impuesto', max_length = 80, default = "%")
+    Porcentaje = models.DecimalField('Valor', max_digits = 5, decimal_places = 2, blank = True)
         
     def __str__(self):  
        return str(self.Nombre)
@@ -50,7 +50,7 @@ class Cliente(models.Model):
 class Contrato(models.Model):
     Folio = models.CharField('Folio de contrato', default = None, max_length = 80)
     Metros_contratados = models.PositiveIntegerField('Metros arrendados', blank = True)
-    Precio_Metro = models.DecimalField(verbose_name=u'Precio por metro cuadrado', max_digits = 5, decimal_places = 2, validators = [MinValueValidator(0.0)])
+    Precio_Metro = models.DecimalField(verbose_name=u'Precio por metro cuadrado', max_digits = 5, decimal_places = 2, default=None, validators = [MinValueValidator(0.0)])
     #cliente
     Cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE, default = None)
     #cajones
