@@ -52,10 +52,11 @@ class AdminContrato(admin.ModelAdmin):
     'Metros_contratados',
     'Precio_Metro',
     'Cliente',
+    'Fecha_i',
+    'Fecha_f',
     #'Cajones',
     #'Nombre',
     'Nivel'
-
   )
 
 admin.site.register(Edificio, AdminEdificios)
@@ -64,3 +65,5 @@ admin.site.register(Impuestos, AdminImpuestos)
 admin.site.register(Estacionamiento, AdminEstacionamiento)
 admin.site.register(Contrato, AdminContrato)
 admin.site.register(Cliente, AdminClientes)
+
+

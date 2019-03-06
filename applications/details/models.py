@@ -54,6 +54,8 @@ class Contrato(models.Model):
     Folio = models.CharField('Folio de contrato', default = None, max_length = 80)
     Metros_contratados = models.PositiveIntegerField('Metros arrendados', blank = True)
     Precio_Metro = models.DecimalField(verbose_name=u'Precio por metro cuadrado', max_digits = 5, decimal_places = 2, default= None, validators = [MinValueValidator(0.0)])
+    Fecha_i=models.DateField('Inicio de contrato', default=None, blank = False)
+    Fecha_f=models.DateField('Fin de contrato', default=None, blank = True)
     #cliente
     Cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE, default = None)
     #cajones
@@ -64,9 +66,15 @@ class Contrato(models.Model):
     #nivel
     Nivel = models.ForeignKey(Edificio, on_delete = models.CASCADE, default = None)
 
-    def __str__(self):
-        return (self.Folio)
+    ''' def __str__(self):
+        return (self.Folio) '''
+    #Validar que la fecha de fin de contrato no sea mayor a la fecha inicio de contrato y viceversa
+    def ValidaFechas(self):
+        if (self.Fecha_F < self.Fecha_i):
+            msg = 'La Fecha de terminación debe ser mayor a la de inicio'
+        return self.msg
 
-
-
-#Many to many fields: https://www.revsys.com/tidbits/tips-using-djangos-manytomanyfield/        
+#Many to many fields: https://www.revsys.com/tidbits/tips-using-djangos-manytomanyfield/     
+#Date comparisson https://sateliteguayana.wordpress.com/2015/05/27/comparacion-de-fechas-en-python/   
+#DAte validation https://codereview.stackexchange.com/questions/164533/validation-methods-to-ensure-start-and-end-date-come-after-existing-instances
+#Validators usign Django Framework on models https://docs.djangoproject.com/en/2.1/ref/validators/
